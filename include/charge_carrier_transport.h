@@ -6,6 +6,7 @@
 #include "magnetic_field.h"
 #include "constants.h"
 #include <TRandom3.h>
+#include <TGraph2D.h>
 
 /**
  * @brief Class to handle the transport of charge carriers in electric and magnetic fields, considering drift, diffusion, and the Lorentz force.
@@ -43,7 +44,7 @@ public:
      */
     TVector3 move(ChargeCarrier &particle);
 	
-    void plotPath();
+    TGraph2D* plotPath();
 
     /**
      * @brief Sets the diffusion coefficient used for calculating diffusion effects.

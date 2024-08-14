@@ -1,8 +1,8 @@
 # Makefile
 
 ROOTCFLAGS    := $(shell root-config --cflags)
-ROOTLIBS      := $(shell root-config --libs)
-ROOTGLIBS     := $(shell root-config --glibs)
+ROOTLIBS      := $(shell root-config --libs) -lGeom
+ROOTGLIBS     := $(shell root-config --glibs) -lGeom
 
 TARGET        := sa_digitizer
 INCDIR        := include
