@@ -1,4 +1,0 @@
-<map id="MagneticField" name="MagneticField">
-<area shape="rect" id="node1" title="A class representing a magnetic field, inheriting from VectorField." alt="" coords="5,80,119,107"/>
-<area shape="rect" id="node2" href="$classVectorField.html" title="A generic class representing a vector field in a given space." alt="" coords="15,5,109,32"/>
-</map>
