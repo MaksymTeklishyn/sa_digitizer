@@ -30,3 +30,17 @@
 *.exe
 *.out
 *.app
+
+# Doxygen Documentation
+docs/
+html/
+latex/
+man/
+*.pdf
+*.html
+
+# Other common ignored files
+*.log
+*.tmp
+*.swp
+*.swo

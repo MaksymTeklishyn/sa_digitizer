@@ -1,33 +1,25 @@
-// src/charge_carrier.cpp
 #include "charge_carrier.h"
+#include "constants.h" // Include the constants header for mobility values
 
-ChargeCarrier::ChargeCarrier(TVector3 pos, double m, int c) 
-    : position(pos), mobility(m), charge(c) {}
-
-ChargeCarrier::~ChargeCarrier() {}
-
-void ChargeCarrier::setMobility(double m) {
-    mobility = m;
+ChargeCarrier::ChargeCarrier(const TVector3& pos, int ch)
+    : position(pos), charge(ch) {
+    // Assign mobility based on the charge
+    mobility = (charge > 0) ? HOLE_MOBILITY : ELECTRON_MOBILITY;
 }
 
 double ChargeCarrier::getMobility() const {
     return mobility;
 }
 
-void ChargeCarrier::setCharge(int c) {
-    charge = c;
-}
-
-double ChargeCarrier::getCharge() const {
+int ChargeCarrier::getCharge() const {
     return charge;
-}
-
-void ChargeCarrier::setPosition(const TVector3& pos) {
-    position = pos;
 }
 
 TVector3 ChargeCarrier::getPosition() const {
     return position;
 }
 
+void ChargeCarrier::setPosition(const TVector3& newPosition) {
+    position = newPosition;
+}
 

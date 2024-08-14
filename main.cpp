@@ -37,7 +37,7 @@ int main(int argc, char **argv) {
     // Using functional dependence for electric field
     ChargeCarrierTransport mover;
     mover.setElectricalField(eField);
-    mover.setMagneticField(mField);
+//  mover.setMagneticField(mField);
     
     for (int step = 0; step < 10; ++step) {
         mover.move(particle); // Time step is now a global constant
