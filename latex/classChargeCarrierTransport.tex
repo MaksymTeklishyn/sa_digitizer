@@ -1,0 +1,129 @@
+\hypertarget{classChargeCarrierTransport}{}\doxysection{Charge\+Carrier\+Transport Class Reference}
+\label{classChargeCarrierTransport}\index{ChargeCarrierTransport@{ChargeCarrierTransport}}
+
+
+Class to handle the transport of charge carriers in electric and magnetic fields, considering drift, diffusion, and the Lorentz force.  
+
+
+
+
+{\ttfamily \#include $<$charge\+\_\+carrier\+\_\+transport.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classChargeCarrierTransport_ae48a9d0208e197d97a8c3d647017bb80}{Charge\+Carrier\+Transport}} ()=default
+\begin{DoxyCompactList}\small\item\em Default constructor for \mbox{\hyperlink{classChargeCarrierTransport}{Charge\+Carrier\+Transport}}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classChargeCarrierTransport_a7f6e33aa2ce1a9442088011ff3e414ed}{set\+Electrical\+Field}} (const \mbox{\hyperlink{classElectricalField}{Electrical\+Field}} \&field)
+\begin{DoxyCompactList}\small\item\em Sets the electrical field to be used for calculating drift. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classChargeCarrierTransport_a92c99dd92b593502a2161e3fb64b62b1}{set\+Magnetic\+Field}} (const \mbox{\hyperlink{classMagneticField}{Magnetic\+Field}} \&field)
+\begin{DoxyCompactList}\small\item\em Sets the magnetic field to be used for calculating the Lorentz force. \end{DoxyCompactList}\item 
+TVector3 \mbox{\hyperlink{classChargeCarrierTransport_ac2fb74ca4ad81714a5d845491678eb7d}{move}} (\mbox{\hyperlink{classChargeCarrier}{Charge\+Carrier}} \&particle)
+\begin{DoxyCompactList}\small\item\em Moves the charge carrier by one time step considering drift, diffusion, and the Lorentz force. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classChargeCarrierTransport_a391c30e310a7a178582b0cce405852c6}{set\+Diffusion\+Coeff}} (double coeff)
+\begin{DoxyCompactList}\small\item\em Sets the diffusion coefficient used for calculating diffusion effects. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classChargeCarrierTransport_ae2ecdf07e15c5baffbb508c5832c6ca1}{get\+Diffusion\+Coeff}} () const
+\begin{DoxyCompactList}\small\item\em Gets the current diffusion coefficient. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class to handle the transport of charge carriers in electric and magnetic fields, considering drift, diffusion, and the Lorentz force. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classChargeCarrierTransport_ae48a9d0208e197d97a8c3d647017bb80}\label{classChargeCarrierTransport_ae48a9d0208e197d97a8c3d647017bb80}} 
+\index{ChargeCarrierTransport@{ChargeCarrierTransport}!ChargeCarrierTransport@{ChargeCarrierTransport}}
+\index{ChargeCarrierTransport@{ChargeCarrierTransport}!ChargeCarrierTransport@{ChargeCarrierTransport}}
+\doxysubsubsection{\texorpdfstring{ChargeCarrierTransport()}{ChargeCarrierTransport()}}
+{\footnotesize\ttfamily Charge\+Carrier\+Transport\+::\+Charge\+Carrier\+Transport (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+Default constructor for \mbox{\hyperlink{classChargeCarrierTransport}{Charge\+Carrier\+Transport}}. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classChargeCarrierTransport_ae2ecdf07e15c5baffbb508c5832c6ca1}\label{classChargeCarrierTransport_ae2ecdf07e15c5baffbb508c5832c6ca1}} 
+\index{ChargeCarrierTransport@{ChargeCarrierTransport}!getDiffusionCoeff@{getDiffusionCoeff}}
+\index{getDiffusionCoeff@{getDiffusionCoeff}!ChargeCarrierTransport@{ChargeCarrierTransport}}
+\doxysubsubsection{\texorpdfstring{getDiffusionCoeff()}{getDiffusionCoeff()}}
+{\footnotesize\ttfamily double Charge\+Carrier\+Transport\+::get\+Diffusion\+Coeff (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the current diffusion coefficient. 
+
+\begin{DoxyReturn}{Returns}
+double The current diffusion coefficient. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classChargeCarrierTransport_ac2fb74ca4ad81714a5d845491678eb7d}\label{classChargeCarrierTransport_ac2fb74ca4ad81714a5d845491678eb7d}} 
+\index{ChargeCarrierTransport@{ChargeCarrierTransport}!move@{move}}
+\index{move@{move}!ChargeCarrierTransport@{ChargeCarrierTransport}}
+\doxysubsubsection{\texorpdfstring{move()}{move()}}
+{\footnotesize\ttfamily TVector3 Charge\+Carrier\+Transport\+::move (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classChargeCarrier}{Charge\+Carrier}} \&}]{particle }\end{DoxyParamCaption})}
+
+
+
+Moves the charge carrier by one time step considering drift, diffusion, and the Lorentz force. 
+
+This method calculates the total displacement of the charge carrier due to diffusion, drift in the electric field, and the effect of the magnetic field. The particle\textquotesingle{}s position is then updated based on this displacement.
+
+
+\begin{DoxyParams}{Parameters}
+{\em particle} & The charge carrier to be moved. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+TVector3 The total displacement vector (in μm) for this time step. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classChargeCarrierTransport_a391c30e310a7a178582b0cce405852c6}\label{classChargeCarrierTransport_a391c30e310a7a178582b0cce405852c6}} 
+\index{ChargeCarrierTransport@{ChargeCarrierTransport}!setDiffusionCoeff@{setDiffusionCoeff}}
+\index{setDiffusionCoeff@{setDiffusionCoeff}!ChargeCarrierTransport@{ChargeCarrierTransport}}
+\doxysubsubsection{\texorpdfstring{setDiffusionCoeff()}{setDiffusionCoeff()}}
+{\footnotesize\ttfamily void Charge\+Carrier\+Transport\+::set\+Diffusion\+Coeff (\begin{DoxyParamCaption}\item[{double}]{coeff }\end{DoxyParamCaption})}
+
+
+
+Sets the diffusion coefficient used for calculating diffusion effects. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em coeff} & The diffusion coefficient to be set. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classChargeCarrierTransport_a7f6e33aa2ce1a9442088011ff3e414ed}\label{classChargeCarrierTransport_a7f6e33aa2ce1a9442088011ff3e414ed}} 
+\index{ChargeCarrierTransport@{ChargeCarrierTransport}!setElectricalField@{setElectricalField}}
+\index{setElectricalField@{setElectricalField}!ChargeCarrierTransport@{ChargeCarrierTransport}}
+\doxysubsubsection{\texorpdfstring{setElectricalField()}{setElectricalField()}}
+{\footnotesize\ttfamily void Charge\+Carrier\+Transport\+::set\+Electrical\+Field (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classElectricalField}{Electrical\+Field}} \&}]{field }\end{DoxyParamCaption})}
+
+
+
+Sets the electrical field to be used for calculating drift. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em field} & The electrical field to be set. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classChargeCarrierTransport_a92c99dd92b593502a2161e3fb64b62b1}\label{classChargeCarrierTransport_a92c99dd92b593502a2161e3fb64b62b1}} 
+\index{ChargeCarrierTransport@{ChargeCarrierTransport}!setMagneticField@{setMagneticField}}
+\index{setMagneticField@{setMagneticField}!ChargeCarrierTransport@{ChargeCarrierTransport}}
+\doxysubsubsection{\texorpdfstring{setMagneticField()}{setMagneticField()}}
+{\footnotesize\ttfamily void Charge\+Carrier\+Transport\+::set\+Magnetic\+Field (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classMagneticField}{Magnetic\+Field}} \&}]{field }\end{DoxyParamCaption})}
+
+
+
+Sets the magnetic field to be used for calculating the Lorentz force. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em field} & The magnetic field to be set. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{charge__carrier__transport_8h}{charge\+\_\+carrier\+\_\+transport.\+h}}\item 
+src/\mbox{\hyperlink{charge__carrier__transport_8cpp}{charge\+\_\+carrier\+\_\+transport.\+cpp}}\end{DoxyCompactItemize}
