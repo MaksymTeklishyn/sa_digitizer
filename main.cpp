@@ -21,7 +21,7 @@ int main(int argc, char **argv) {
         return diodElectricFieldZ(position, 320., 60., 150.);
     });
     // Draw the Z-component of the electric field
-    eField.drawFieldComponent(TVector3(0, 0, 1), TVector3(0, 0, 320)); 
+//  eField.drawFieldComponent(TVector3(0, 0, 1), TVector3(0, 0, 320)); 
 
     // Create the MagneticField object with a uniform field
     MagneticField mField(TVector3(0, 1, 0));
@@ -46,6 +46,7 @@ int main(int argc, char **argv) {
                   << newPosition.X() << " µm, " << newPosition.Y() << " µm, " << newPosition.Z() << " µm)" << std::endl;
     }
 
+    mover.plotPath();
 
     app.Run();
     return 0;

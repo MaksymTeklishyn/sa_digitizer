@@ -1,5 +1,9 @@
 #include "charge_carrier_transport.h"
 #include <iostream>
+#include <TGraph2D.h> 
+#include <TCanvas.h>  
+
+
 
 void ChargeCarrierTransport::setElectricalField(const ElectricalField& field) {
     eField = &field;
@@ -42,9 +46,33 @@ TVector3 ChargeCarrierTransport::move(ChargeCarrier &particle) {
 
     // Update the particle's position with the full step
     particle.setPosition(currentPosition + fullStep);
-
+    
+    particlePath.push_back(particle.getPosition());
     // Return the full step vector
     return fullStep;
+}
+
+void ChargeCarrierTransport::plotPath() {
+    if (particlePath.empty()) {
+        std::cerr << "No data to plot!" << std::endl;
+        return;
+    }
+
+    // Create a TGraph2D object to hold the particle path
+    TGraph2D *graph = new TGraph2D(particlePath.size());
+
+    for (size_t i = 0; i < particlePath.size(); ++i) {
+        const TVector3 &pos = particlePath[i];
+        graph->SetPoint(i, pos.X(), pos.Y(), pos.Z());
+    }
+
+    // Create a canvas to draw the graph
+    TCanvas *c1 = new TCanvas("c1", "Particle Path", 800, 600);
+    graph->SetTitle("Particle Path;X [#mum];Y [#mum];Z [#mum]");
+    graph->Draw("LINE");
+
+    // Display the canvas
+    c1->Draw();
 }
 
 TVector3 ChargeCarrierTransport::driftStep(const ChargeCarrier &particle, const TVector3 &fieldStrength) const {

@@ -42,6 +42,8 @@ public:
      * @return TVector3 The total displacement vector (in μm) for this time step.
      */
     TVector3 move(ChargeCarrier &particle);
+	
+    void plotPath();
 
     /**
      * @brief Sets the diffusion coefficient used for calculating diffusion effects.
@@ -62,6 +64,7 @@ private:
     const MagneticField* mField = nullptr;      ///< Pointer to the magnetic field (initialized to nullptr)
     double diffusionCoeff = 10.0;               ///< Default diffusion coefficient
     TRandom3 randomGenerator;                   ///< Random generator for diffusion
+    std::vector<TVector3> particlePath;  	///< Vector to store the particle's path
 
     /**
      * @brief Calculates the drift step of the charge carrier due to the electric field.
