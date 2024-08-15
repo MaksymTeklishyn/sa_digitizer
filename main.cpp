@@ -14,6 +14,7 @@
 #include "charge_carrier_transport.h"
 #include "constants.h"
 #include "field_functions.h"
+#include "strip_electrode.h"
 
 int main(int argc, char **argv) {
     // Initialize ROOT application to handle graphics
@@ -64,6 +65,8 @@ int main(int argc, char **argv) {
 
     // Place the detector volume with the translation applied
     topVolume->AddNode(detectorVolume, 1, translation);
+
+    StripElectrode strip(50., 0);
 
     // Create a canvas to plot everything together
     TCanvas* c1 = new TCanvas("c1", "Combined Plot", 800, 600);
