@@ -3,6 +3,7 @@
 
 #include <functional>
 #include <TVector3.h>
+#include <TF3.h>
 #include "electrical_field.h"
 
 /**
@@ -26,6 +27,9 @@ public:
      * @return A function that checks if a point is within the defined rectangle.
      */
     static std::function<bool(const TVector3&)> flatStrip(double width, double length = 0, double angle = 0);
+
+    // Method to create and return a TF3 visualization of the electrode surface
+    TF3* createSurfaceFunction3D(double xMin, double xMax, double yMin, double yMax, double zMin, double zMax) const;
 
     /**
      * @brief Sets the voltage of the electrode.

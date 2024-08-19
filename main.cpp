@@ -81,9 +81,11 @@ int main(int argc, char **argv) {
     h3->SetStats(0);      // Hide the statistics box
     h3->Draw();           // Draw only the axes
 
+    stripElectrode.createSurfaceFunction3D(-150, 150, -150, 150, 0, 380)->Draw("SAME");
+
     // Draw the detector volume
     geoManager->CloseGeometry();
-    topVolume->Draw("SAME");  // Draw with OpenGL for interactive 3D visualization
+//  topVolume->Draw("SAME");  // Draw with OpenGL for interactive 3D visualization
 
     // Draw the particle path on the same canvas
     pathGraph->Draw("LINE SAME");

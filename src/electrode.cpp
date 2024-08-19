@@ -1,4 +1,5 @@
 #include "electrode.h"
+#include <cmath>
 
 Electrode::Electrode(std::function<bool(const TVector3&)> surfaceFunc, double voltage)
     : surfaceFunc(surfaceFunc), voltage(voltage) {}
@@ -20,6 +21,18 @@ std::function<bool(const TVector3&)> Electrode::flatStrip(double width, double l
         // Check if the rotated point is within the rectangle bounds
         return std::abs(xRot) <= width / 2.0 && std::abs(yRot) <= length / 2.0 && std::abs(point.Z()) < 1e-6;
     };
+}
+
+TF3* Electrode::createSurfaceFunction3D(double xMin, double xMax, double yMin, double yMax, double zMin, double zMax) const {
+    auto surfaceLambda = [this](double* xyz, double* params) -> double {
+        TVector3 point(xyz[0], xyz[1], xyz[2]);
+        return surfaceFunc(point) ? 1.0 : 0.0;
+    };
+
+    TF3* surfaceFunction = new TF3("surfaceFunction", surfaceLambda, xMin, xMax, yMin, yMax, zMin, zMax, 0, "surfaceFunction");
+    surfaceFunction->SetTitle("Electrode Surface;X [um];Y [um];Z [um]");
+//  TF3* surfaceFunction = new TF3("surfaceFunction", "x+y+z", xMin, xMax, yMin, yMax, zMin, zMax, 0, "surfaceFunction");
+    return surfaceFunction;
 }
 
 void Electrode::setVoltage(double voltage) {
