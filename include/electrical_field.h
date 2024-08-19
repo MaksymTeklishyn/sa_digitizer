@@ -5,9 +5,19 @@
 
 /**
  * @brief A class representing an electrical field, inheriting from VectorField.
+ *
+ * The ElectricalField class allows for the definition and manipulation of an electrical field
+ * based on a user-defined function. It provides methods to get the field strength at a specific
+ * position and to visualize the field component along a given direction.
  */
 class ElectricalField : public VectorField {
 public:
+    /**
+     * @brief Default constructor for the ElectricalField class. Zero field value everywhere.
+     */
+    ElectricalField()
+        : VectorField() {}
+
     /**
      * @brief Constructor that initializes the electrical field with a given function.
      * 

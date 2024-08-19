@@ -13,6 +13,12 @@
 class MagneticField : public VectorField {
 public:
     /**
+     * @brief Default constructor for the MagneticField class. Zero field value everywhere.
+     */
+    MagneticField()
+        : VectorField() {}
+
+    /**
      * @brief Constructor that initializes the magnetic field with a given function.
      * 
      * @param func A function that takes a position (TVector3) and returns the field strength (TVector3).

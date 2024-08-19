@@ -1,5 +1,8 @@
 #include "vector_field.h"
 
+VectorField::VectorField()
+    : fieldFunction([](const TVector3&) { return TVector3(0, 0, 0); }) {}
+
 VectorField::VectorField(std::function<TVector3(const TVector3&)> func)
     : fieldFunction(func) {}
 

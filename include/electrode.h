@@ -1,21 +1,22 @@
 #ifndef ELECTRODE_H
 #define ELECTRODE_H
 
-#include <TGeoPolygon.h>
+#include <functional>
+#include <TVector3.h>
 #include "electrical_field.h"
 
 /**
  * @class Electrode
- * @brief Represents an electrode in a detector, including its voltage, surface geometry, and associated weighting field.
+ * @brief Represents an electrode in a detector, with a surface defined by an arbitrary function in 3D space.
  */
 class Electrode {
 public:
     /**
      * @brief Constructor for the Electrode class.
-     * @param surface Pointer to a TGeoPolygon object representing the surface of the electrode.
+     * @param surfaceFunc A function that defines the surface in 3D space.
      * @param voltage The voltage applied to the electrode. Defaults to 0.0.
      */
-    Electrode(TGeoPolygon* surface, double voltage = 0.0);
+    Electrode(std::function<bool(const TVector3&)> surfaceFunc, double voltage = 0.0);
 
     /**
      * @brief Sets the voltage of the electrode.
@@ -24,10 +25,10 @@ public:
     void setVoltage(double voltage);
 
     /**
-     * @brief Sets the surface geometry of the electrode.
-     * @param surface Pointer to a TGeoPolygon object representing the surface of the electrode.
+     * @brief Sets the surface function of the electrode.
+     * @param surfaceFunc A function that defines the surface in 3D space.
      */
-    void setSurface(TGeoPolygon* surface);
+    void setSurfaceFunction(std::function<bool(const TVector3&)> surfaceFunc);
 
     /**
      * @brief Sets the weighting field associated with the electrode.
@@ -42,10 +43,10 @@ public:
     double getVoltage() const;
 
     /**
-     * @brief Gets the surface geometry of the electrode.
-     * @return A pointer to the TGeoPolygon object representing the surface of the electrode.
+     * @brief Gets the surface function of the electrode.
+     * @return The function defining the electrode surface.
      */
-    const TGeoPolygon* getSurface() const;
+    std::function<bool(const TVector3&)> getSurfaceFunction() const;
 
     /**
      * @brief Gets the weighting field associated with the electrode.
@@ -54,8 +55,8 @@ public:
     const ElectricalField& getWeightingField() const;
 
 private:
-    double voltage;                  ///< Voltage applied to the electrode
-    TGeoPolygon* surface;            ///< Pointer to the surface geometry of the electrode
+    double voltage;  ///< Voltage of the electrode
+    std::function<bool(const TVector3&)> surfaceFunc;  ///< Function defining the electrode surface
     ElectricalField weightingField;  ///< Weighting field associated with the electrode
 };
 

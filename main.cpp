@@ -14,7 +14,7 @@
 #include "charge_carrier_transport.h"
 #include "constants.h"
 #include "field_functions.h"
-#include "strip_electrode.h"
+#include "electrode.h"
 
 int main(int argc, char **argv) {
     // Initialize ROOT application to handle graphics
@@ -24,6 +24,7 @@ int main(int argc, char **argv) {
     ElectricalField eField([](const TVector3& position) -> TVector3 {
         return diodElectricFieldZ(position, 320., 60., 150.);
     });
+//  ElectricalField eField;
 
     // Initialize a charge carrier at a specific position
     ChargeCarrier particle(TVector3(0, 0, 320.0 / 2));  // Position in micrometers
@@ -66,7 +67,6 @@ int main(int argc, char **argv) {
     // Place the detector volume with the translation applied
     topVolume->AddNode(detectorVolume, 1, translation);
 
-    StripElectrode strip(50., 0);
 
     // Create a canvas to plot everything together
     TCanvas* c1 = new TCanvas("c1", "Combined Plot", 800, 600);

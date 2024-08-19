@@ -1,29 +1,26 @@
 #include "electrode.h"
 
-// Constructor implementation
-Electrode::Electrode(TGeoPolygon* surface, double voltage)
-    : surface(surface), voltage(voltage), weightingField(ElectricalField(TVector3(0, 0, 0))) {}
+Electrode::Electrode(std::function<bool(const TVector3&)> surfaceFunc, double voltage)
+    : surfaceFunc(surfaceFunc), voltage(voltage) {}
 
-// Setter methods
 void Electrode::setVoltage(double voltage) {
     this->voltage = voltage;
 }
 
-void Electrode::setSurface(TGeoPolygon* surface) {
-    this->surface = surface;
+void Electrode::setSurfaceFunction(std::function<bool(const TVector3&)> surfaceFunc) {
+    this->surfaceFunc = surfaceFunc;
 }
 
 void Electrode::setWeightingField(const ElectricalField& field) {
     this->weightingField = field;
 }
 
-// Getter methods
 double Electrode::getVoltage() const {
     return voltage;
 }
 
-const TGeoPolygon* Electrode::getSurface() const {
-    return surface;
+std::function<bool(const TVector3&)> Electrode::getSurfaceFunction() const {
+    return surfaceFunc;
 }
 
 const ElectricalField& Electrode::getWeightingField() const {

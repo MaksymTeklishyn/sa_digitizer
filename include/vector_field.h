@@ -17,6 +17,11 @@
 class VectorField {
 public:
     /**
+     * @brief Default constructor for the VectorField class.
+     */
+    VectorField();
+
+    /**
      * @brief Constructor that initializes the vector field with a given function.
      * 
      * @param func A function that takes a position (TVector3) and returns the field strength (TVector3).
