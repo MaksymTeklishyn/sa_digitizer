@@ -67,6 +67,9 @@ int main(int argc, char **argv) {
     // Place the detector volume with the translation applied
     topVolume->AddNode(detectorVolume, 1, translation);
 
+    Electrode stripElectrode(Electrode::flatStrip(50.0));
+
+
 
     // Create a canvas to plot everything together
     TCanvas* c1 = new TCanvas("c1", "Combined Plot", 800, 600);

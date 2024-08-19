@@ -19,6 +19,15 @@ public:
     Electrode(std::function<bool(const TVector3&)> surfaceFunc, double voltage = 0.0);
 
     /**
+     * @brief Static function to define a flat strip in the XY-plane, rotated around the z-axis.
+     * @param width The width of the strip.
+     * @param length The length of the strip. Defaults to 10 times the width.
+     * @param angle The rotation angle around the z-axis in degrees.
+     * @return A function that checks if a point is within the defined rectangle.
+     */
+    static std::function<bool(const TVector3&)> flatStrip(double width, double length = 0, double angle = 0);
+
+    /**
      * @brief Sets the voltage of the electrode.
      * @param voltage The voltage to be set.
      */
