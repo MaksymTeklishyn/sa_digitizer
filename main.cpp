@@ -10,7 +10,7 @@
 #include <TRandom3.h>
 #include <TView.h>
 #include "charge_carrier.h"
-#include "electrical_field.h"
+#include "electric_field.h"
 #include "charge_carrier_transport.h"
 #include "constants.h"
 #include "field_functions.h"
@@ -20,18 +20,18 @@ int main(int argc, char **argv) {
     // Initialize ROOT application to handle graphics
     TApplication app("ROOT Application", &argc, argv);
 
-    // Create the ElectricalField object with the linearElectricField function
-    ElectricalField eField([](const TVector3& position) -> TVector3 {
+    // Create the ElectricField object with the linearElectricField function
+    ElectricField eField([](const TVector3& position) -> TVector3 {
         return diodElectricFieldZ(position, 320., 60., 150.);
     });
-//  ElectricalField eField;
+//  ElectricField eField;
 
     // Initialize a charge carrier at a specific position
     ChargeCarrier particle(TVector3(0, 0, 320.0 / 2));  // Position in micrometers
 
     // Set up the ChargeCarrierTransport with the electric field
     ChargeCarrierTransport mover;
-    mover.setElectricalField(eField);
+    mover.setElectricField(eField);
 
     // Simulate the movement of the particle over multiple steps
     for (int step = 0; step < 50; ++step) {

@@ -4,7 +4,7 @@
 #include <functional>
 #include <TVector3.h>
 #include <TF3.h>
-#include "electrical_field.h"
+#include "electric_field.h"
 
 /**
  * @class Electrode
@@ -45,9 +45,9 @@ public:
 
     /**
      * @brief Sets the weighting field associated with the electrode.
-     * @param field A reference to an ElectricalField object representing the weighting field.
+     * @param field A reference to an ElectricField object representing the weighting field.
      */
-    void setWeightingField(const ElectricalField& field);
+    void setWeightingField(const ElectricField& field);
 
     /**
      * @brief Gets the voltage of the electrode.
@@ -63,14 +63,14 @@ public:
 
     /**
      * @brief Gets the weighting field associated with the electrode.
-     * @return A reference to the ElectricalField object representing the weighting field.
+     * @return A reference to the ElectricField object representing the weighting field.
      */
-    const ElectricalField& getWeightingField() const;
+    const ElectricField& getWeightingField() const;
 
 private:
     double voltage;  ///< Voltage of the electrode
     std::function<bool(const TVector3&)> surfaceFunc;  ///< Function defining the electrode surface
-    ElectricalField weightingField;  ///< Weighting field associated with the electrode
+    ElectricField weightingField;  ///< Weighting field associated with the electrode
 };
 
 #endif // ELECTRODE_H

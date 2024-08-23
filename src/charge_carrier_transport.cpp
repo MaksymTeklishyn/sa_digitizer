@@ -4,7 +4,7 @@
 
 
 
-void ChargeCarrierTransport::setElectricalField(const ElectricalField& field) {
+void ChargeCarrierTransport::setElectricField(const ElectricField& field) {
     eField = &field;
 }
 

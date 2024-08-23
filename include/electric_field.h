@@ -4,42 +4,42 @@
 #include "vector_field.h"
 
 /**
- * @brief A class representing an electrical field, inheriting from VectorField.
+ * @brief A class representing an electric field, inheriting from VectorField.
  *
- * The ElectricalField class allows for the definition and manipulation of an electrical field
+ * The ElectricField class allows for the definition and manipulation of an electric field
  * based on a user-defined function. It provides methods to get the field strength at a specific
  * position and to visualize the field component along a given direction.
  */
-class ElectricalField : public VectorField {
+class ElectricField : public VectorField {
 public:
     /**
-     * @brief Default constructor for the ElectricalField class. Zero field value everywhere.
+     * @brief Default constructor for the ElectricField class. Zero field value everywhere.
      */
-    ElectricalField()
+    ElectricField()
         : VectorField() {}
 
     /**
-     * @brief Constructor that initializes the electrical field with a given function.
+     * @brief Constructor that initializes the electric field with a given function.
      * 
      * @param func A function that takes a position (TVector3) and returns the field strength (TVector3).
      */
-    ElectricalField(std::function<TVector3(const TVector3&)> func)
+    ElectricField(std::function<TVector3(const TVector3&)> func)
         : VectorField(func) {}
 
     /**
-     * @brief Constructor that initializes the electrical field with a uniform field vector.
+     * @brief Constructor that initializes the electric field with a uniform field vector.
      * 
      * This constructor creates a uniform field that returns the same vector at any position in space.
      * 
      * @param uniformField The TVector3 vector that defines the uniform field strength.
      */
-    ElectricalField(const TVector3& uniformField)
+    ElectricField(const TVector3& uniformField)
         : VectorField(uniformField) {}
 
     /**
-     * @brief Destructor for the ElectricalField class.
+     * @brief Destructor for the ElectricField class.
      */
-    ~ElectricalField() {}
+    ~ElectricField() {}
 };
 
 #endif // ELECTRICAL_FIELD_H

@@ -43,7 +43,7 @@ void Electrode::setSurfaceFunction(std::function<bool(const TVector3&)> surfaceF
     this->surfaceFunc = surfaceFunc;
 }
 
-void Electrode::setWeightingField(const ElectricalField& field) {
+void Electrode::setWeightingField(const ElectricField& field) {
     this->weightingField = field;
 }
 
@@ -55,7 +55,7 @@ std::function<bool(const TVector3&)> Electrode::getSurfaceFunction() const {
     return surfaceFunc;
 }
 
-const ElectricalField& Electrode::getWeightingField() const {
+const ElectricField& Electrode::getWeightingField() const {
     return weightingField;
 }
 

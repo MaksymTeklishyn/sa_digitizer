@@ -2,7 +2,7 @@
 #define CHARGE_CARRIER_TRANSPORT_H
 
 #include "charge_carrier.h"
-#include "electrical_field.h"
+#include "electric_field.h"
 #include "magnetic_field.h"
 #include "constants.h"
 #include <TRandom3.h>
@@ -19,11 +19,11 @@ public:
     ChargeCarrierTransport() = default;
 
     /**
-     * @brief Sets the electrical field to be used for calculating drift.
+     * @brief Sets the electric field to be used for calculating drift.
      * 
-     * @param field The electrical field to be set.
+     * @param field The electric field to be set.
      */
-    void setElectricalField(const ElectricalField& field);
+    void setElectricField(const ElectricField& field);
 
     /**
      * @brief Sets the magnetic field to be used for calculating the Lorentz force.
@@ -61,7 +61,7 @@ public:
     double getDiffusionCoeff() const;
 
 private:
-    const ElectricalField* eField = nullptr;    ///< Pointer to the electric field (initialized to nullptr)
+    const ElectricField* eField = nullptr;    ///< Pointer to the electric field (initialized to nullptr)
     const MagneticField* mField = nullptr;      ///< Pointer to the magnetic field (initialized to nullptr)
     double diffusionCoeff = 10.0;               ///< Default diffusion coefficient
     TRandom3 randomGenerator;                   ///< Random generator for diffusion
