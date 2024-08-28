@@ -4,7 +4,7 @@ ROOTCFLAGS    := $(shell root-config --cflags)
 ROOTLIBS      := $(shell root-config --libs) -lGeom
 ROOTGLIBS     := $(shell root-config --glibs) -lGeom
 
-TARGET        := sa_digitizer
+TARGET        := triss
 INCDIR        := include
 SRCDIR        := src
 SRC           := main.cpp $(wildcard $(SRCDIR)/*.cpp)
