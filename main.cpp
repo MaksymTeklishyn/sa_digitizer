@@ -9,6 +9,7 @@
 #include <TGeoMatrix.h>
 #include <TRandom3.h>
 #include <TView.h>
+#include <TView3D.h>
 #include "charge_carrier.h"
 #include "electric_field.h"
 #include "charge_carrier_transport.h"
@@ -86,6 +87,15 @@ int main(int argc, char **argv) {
     // Create a canvas to plot everything together
     TCanvas* c1 = new TCanvas("c1", "Combined Plot", 800, 600);
 
+
+    // Define the viewing range
+    Double_t rmin[3] = {-150, -150, 0};
+    Double_t rmax[3] = {150, 150, 320};
+
+    // Set up the 3D view with OpenGL
+    TView3D *view = new TView3D(1, rmin, rmax);
+
+
     // Create a dummy 3D histogram to draw axes with a smaller range
     TH3D* h3 = new TH3D("h3", ";X [#mum];Y [#mum];Z [#mum]", 
                         10, -150, 150, 10, -150, 150, 10, 0, 320);
@@ -95,7 +105,7 @@ int main(int argc, char **argv) {
 
     // Draw the detector volume
     geoManager->CloseGeometry();
-//  topVolume->Draw("SAME");  // Draw with OpenGL for interactive 3D visualization
+    topVolume->Draw("SAME");  // Draw with OpenGL for interactive 3D visualization
 
     // Draw the particle path on the same canvas
     pathGraph->Draw("LINE SAME");
@@ -103,8 +113,9 @@ int main(int argc, char **argv) {
     electrode.drawFootprint("SAME");
 
     // Adjust the viewing range to better match both the graph and the volume
-    TView *view = TView::CreateView(1);
-    view->SetRange(-150, -150, 0, 150, 150, 320); // Adjust based on your expected ranges
+//  TView *view = TView::CreateView(1);
+//  view->SetRange(-150, -150, 0, 150, 150, 320); // Adjust based on your expected ranges
+
 
     // Update and display the canvas
     c1->Update();
