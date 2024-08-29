@@ -15,6 +15,7 @@
 #include "constants.h"
 #include "field_functions.h"
 #include "electrode.h"
+#include "pixel.h"
 
 int main(int argc, char **argv) {
     // Initialize ROOT application to handle graphics
@@ -77,7 +78,8 @@ int main(int argc, char **argv) {
 
 
     // Create an Electrode object with the Surface and a Z position of 100 micrometers
-    Electrode electrode(Surface(vertices), 100.0);
+//  Electrode electrode(Surface(vertices), 100.0);
+    Electrode electrode(Pixel(50.), 100.0);
     
 
 
