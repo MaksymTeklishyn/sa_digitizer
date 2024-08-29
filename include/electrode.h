@@ -5,6 +5,8 @@
 #include <TVector3.h>
 #include <TF3.h>
 #include "electric_field.h"
+#include "surface.h"
+#include <TPolyLine3D.h>
 
 /**
  * @class Electrode
@@ -12,24 +14,7 @@
  */
 class Electrode {
 public:
-    /**
-     * @brief Constructor for the Electrode class.
-     * @param surfaceFunc A function that defines the surface in 3D space.
-     * @param voltage The voltage applied to the electrode. Defaults to 0.0.
-     */
-    Electrode(std::function<bool(const TVector3&)> surfaceFunc, double voltage = 0.0);
-
-    /**
-     * @brief Static function to define a flat strip in the XY-plane, rotated around the z-axis.
-     * @param width The width of the strip.
-     * @param length The length of the strip. Defaults to 10 times the width.
-     * @param angle The rotation angle around the z-axis in degrees.
-     * @return A function that checks if a point is within the defined rectangle.
-     */
-    static std::function<bool(const TVector3&)> flatStrip(double width, double length = 0, double angle = 0);
-
-    // Method to create and return a TF3 visualization of the electrode surface
-    TF3* createSurfaceFunction3D(double xMin, double xMax, double yMin, double yMax, double zMin, double zMax) const;
+    Electrode(const Surface& surface, double voltage = 0.0);
 
     /**
      * @brief Sets the voltage of the electrode.
@@ -67,7 +52,14 @@ public:
      */
     const ElectricField& getWeightingField() const;
 
+    /**
+     * @brief Visualizes the electrode's surface.
+     * @param title The title of the visualization.
+     */
+    void drawFootprint(const char* option = "SAME");
+
 private:
+    TPolyLine3D footprint;  // Footprint of the electrode in 3D space
     double voltage;  ///< Voltage of the electrode
     std::function<bool(const TVector3&)> surfaceFunc;  ///< Function defining the electrode surface
     ElectricField weightingField;  ///< Weighting field associated with the electrode

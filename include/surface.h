@@ -3,7 +3,7 @@
 
 #include <vector>
 #include <TVector2.h>
-#include <TPolyLine.h>
+#include <TPolyLine3D.h>
 
 class Surface {
 public:
@@ -13,12 +13,34 @@ public:
     // Method to get the vertices of the surface
     const std::vector<TVector2>& getVertices() const;
 
-    // Method to visualize the surface
-    void visualize(const std::string& title = "Surface") const;
+    // Method to get the footprint of the surface as a TPolyLine3D object
+    TPolyLine3D getFootprint() const;
 
 private:
     std::vector<TVector2> vertices;  // Vertices defining the surface in the XY plane
 };
 
 #endif // SURFACE_H
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

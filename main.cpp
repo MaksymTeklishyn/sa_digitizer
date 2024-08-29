@@ -67,8 +67,18 @@ int main(int argc, char **argv) {
     // Place the detector volume with the translation applied
     topVolume->AddNode(detectorVolume, 1, translation);
 
-    Electrode stripElectrode(Electrode::flatStrip(50.0));
+    // Define a rectangular surface in the XY plane
+    std::vector<TVector2> vertices = {
+        TVector2(0, 0),
+        TVector2(100, 0),
+        TVector2(100, 50),
+        TVector2(0, 50)
+    };
 
+
+    // Create an Electrode object with the Surface and a Z position of 100 micrometers
+    Electrode electrode(Surface(vertices), 100.0);
+    
 
 
     // Create a canvas to plot everything together
@@ -81,14 +91,14 @@ int main(int argc, char **argv) {
     h3->SetStats(0);      // Hide the statistics box
     h3->Draw();           // Draw only the axes
 
-    stripElectrode.createSurfaceFunction3D(-150, 150, -150, 150, 0, 380)->Draw("SAME");
-
     // Draw the detector volume
     geoManager->CloseGeometry();
 //  topVolume->Draw("SAME");  // Draw with OpenGL for interactive 3D visualization
 
     // Draw the particle path on the same canvas
     pathGraph->Draw("LINE SAME");
+
+    electrode.drawFootprint("SAME");
 
     // Adjust the viewing range to better match both the graph and the volume
     TView *view = TView::CreateView(1);
