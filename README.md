@@ -1,10 +1,10 @@
-# TrISS
+# TrI̊SS
 
 [![License: GPL-3.0](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 ## Overview
 
-**TrISS** (Transport-oriented Incremental Semiconductor Simulator) is a C++ library designed for the simulation and digitization of siliconand other semiconductor sensor signals in physics experiments and similar applications. The library provides a robust framework for modeling and analyzing the behavior of charge carriers in silicon sensors under the influence of electric and magnetic fields. This simulation is essential for understanding and optimizing the performance of silicon-based detectors used in high-energy physics, medical imaging, and other scientific applications.
+**TrI̊SS** (Transport-oriented Incremental Semiconductor Simulator) is a C++ library designed for the simulation and digitization of siliconand other semiconductor sensor signals in physics experiments and similar applications. The library provides a robust framework for modeling and analyzing the behavior of charge carriers in silicon sensors under the influence of electric and magnetic fields. This simulation is essential for understanding and optimizing the performance of silicon-based detectors used in high-energy physics, medical imaging, and other scientific applications.
 
 ## Features
 

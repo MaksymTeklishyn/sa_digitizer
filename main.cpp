@@ -79,7 +79,7 @@ int main(int argc, char **argv) {
 
     // Create an Electrode object with the Surface and a Z position of 100 micrometers
 //  Electrode electrode(Surface(vertices), 100.0);
-    Electrode electrode(Pixel(50.), 100.0);
+    Electrode electrode(Pixel(50., 150.), 100.0);
     
 
 
