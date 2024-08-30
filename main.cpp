@@ -2,11 +2,6 @@
 #include <TApplication.h>
 #include <TCanvas.h>
 #include <TH3D.h>
-#include <TGeoManager.h>
-#include <TGeoVolume.h>
-#include <TGeoMaterial.h>
-#include <TGeoMedium.h>
-#include <TGeoMatrix.h>
 #include <TRandom3.h>
 #include <TView.h>
 #include <TView3D.h>
@@ -52,7 +47,7 @@ int main(int argc, char **argv) {
 
     // Create an Electrode object with the Surface and a Z position of 100 micrometers
     Electrode electrode(PixelSurface(50., 150.), TVector3(100, 0, 100.));
-    Electrode electrodeStrip(StripSurface(58., 15.));
+    Electrode electrodeStrip(StripSurface(58., 7.5), TVector3(50, 0, 0));
     
 
 

@@ -45,6 +45,14 @@ public:
      */
     TPolyLine3D getFootprint() const;
 
+    bool isInside(const TVector2& point) const;
+
+    /**
+     * @brief Returns a std::function that can be used to check if a point is inside the surface.
+     * @return A std::function<bool(const TVector2&)> that checks if a point is inside the surface.
+     */
+    std::function<bool(const TVector2&)> getSurfaceFunction() const;
+
 private:
     std::vector<TVector2> vertices;  ///< Vertices defining the surface in the XY plane.
     TPolyLine3D footprint;
