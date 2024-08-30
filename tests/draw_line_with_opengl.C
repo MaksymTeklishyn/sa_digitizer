@@ -1,6 +1,7 @@
 #include <TCanvas.h>
 #include <TPolyLine3D.h>
 #include <TView3D.h>
+#include <TH3D.h>
 
 void draw_line_with_opengl() {
     // Create a new canvas with OpenGL enabled
@@ -12,6 +13,15 @@ void draw_line_with_opengl() {
 
     // Set up the 3D view with OpenGL
     TView3D *view = new TView3D(1, rmin, rmax);
+
+    // Create an empty 3D histogram to draw the axes
+    TH3D *h3 = new TH3D("h3", "Axes;X axis;Y axis;Z axis", 
+                        10, rmin[0], rmax[0], 
+                        10, rmin[1], rmax[1], 
+                        10, rmin[2], rmax[2]);
+    h3->SetLineColor(0);  // Make the histogram itself invisible
+    h3->SetStats(0);      // Hide the statistics box
+    h3->Draw();           // Draw only the axes
 
     // Define the line endpoints
     TPolyLine3D *line = new TPolyLine3D(2);

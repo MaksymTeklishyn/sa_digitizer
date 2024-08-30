@@ -16,7 +16,8 @@
 #include "constants.h"
 #include "field_functions.h"
 #include "electrode.h"
-#include "pixel.h"
+#include "pixel_surface.h"
+#include "strip_surface.h"
 
 int main(int argc, char **argv) {
     // Initialize ROOT application to handle graphics
@@ -80,7 +81,8 @@ int main(int argc, char **argv) {
 
     // Create an Electrode object with the Surface and a Z position of 100 micrometers
 //  Electrode electrode(Surface(vertices), 100.0);
-    Electrode electrode(Pixel(50., 150.), 100.0);
+    Electrode electrode(PixelSurface(50., 150.), 100.0);
+    Electrode electrodeStrip(StripSurface(30., 20.), 100.0);
     
 
 
@@ -105,12 +107,13 @@ int main(int argc, char **argv) {
 
     // Draw the detector volume
     geoManager->CloseGeometry();
-    topVolume->Draw("SAME");  // Draw with OpenGL for interactive 3D visualization
+//  topVolume->Draw("SAME");  // Draw with OpenGL for interactive 3D visualization
 
     // Draw the particle path on the same canvas
     pathGraph->Draw("LINE SAME");
 
     electrode.drawFootprint("SAME");
+    electrodeStrip.drawFootprint("SAME");
 
     // Adjust the viewing range to better match both the graph and the volume
 //  TView *view = TView::CreateView(1);

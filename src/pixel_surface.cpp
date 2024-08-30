@@ -1,7 +1,7 @@
-#include "pixel.h"
+#include "pixel_surface.h"
 
 // Constructor
-Pixel::Pixel(double width, double length)
+PixelSurface::PixelSurface(double width, double length)
     : Surface({
         TVector2(-width / 2, - (length == 0 ? width : length) / 2),  // Bottom-left corner
         TVector2(width / 2, - (length == 0 ? width : length) / 2),   // Bottom-right corner
