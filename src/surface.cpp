@@ -1,4 +1,5 @@
 #include "surface.h"
+#include "iostream"
 #include <TPolyLine3D.h>
 
 // Constructor
@@ -26,19 +27,28 @@ TPolyLine3D Surface::getFootprint() const {
 bool Surface::isInside(const TVector2& point) const {
     int n = vertices.size();
     bool inside = false;
+/*
+    // Debug output
+    std::cout << "Checking point: (" << point.X() << ", " << point.Y() << ")" << std::endl;
+    std::cout << "Number of vertices: " << n << std::endl;
 
     for (int i = 0, j = n - 1; i < n; j = i++) {
         const TVector2& vi = vertices[i];
         const TVector2& vj = vertices[j];
+
+        // Debug output for each vertex
+        std::cout << "Vertex " << i << ": (" << vi.X() << ", " << vi.Y() << ")" << std::endl;
+        std::cout << "Vertex " << j << ": (" << vj.X() << ", " << vj.Y() << ")" << std::endl;
 
         if (((vi.Y() > point.Y()) != (vj.Y() > point.Y())) &&
             (point.X() < (vj.X() - vi.X()) * (point.Y() - vi.Y()) / (vj.Y() - vi.Y()) + vi.X())) {
             inside = !inside;
         }
     }
-
+*/
     return inside;
 }
+
 
 // Get the surface function as a std::function
 std::function<bool(const TVector2&)> Surface::getSurfaceFunction() const {

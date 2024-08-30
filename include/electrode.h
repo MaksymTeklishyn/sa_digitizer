@@ -32,7 +32,7 @@ public:
      * @brief Sets the surface function of the electrode.
      * @param surfaceFunc A function that defines the surface in 3D space.
      */
-    void setSurfaceFunction(std::function<bool(const TVector3&)> surfaceFunc);
+    void setSurfaceFunction(std::function<bool(const TVector2&)> surfaceFunc);
 
     /**
      * @brief Sets the weighting field associated with the electrode.
@@ -50,7 +50,7 @@ public:
      * @brief Gets the surface function of the electrode.
      * @return The function defining the electrode surface.
      */
-    std::function<bool(const TVector3&)> getSurfaceFunction() const;
+    std::function<bool(const TVector2&)> getSurfaceFunction() const;
 
     /**
      * @brief Gets the weighting field associated with the electrode.
@@ -70,11 +70,18 @@ public:
      */
     void drawFootprint(const char* option = "SAME");
 
+    /**
+     * @brief Checks if a 3D point is within the "shadow" of the electrode's surface, accounting for the electrode's position.
+     * @param point The point to check.
+     * @return True if the point's (X, Y) lies within the surface's shadow.
+     */
+    bool isInShadow(const TVector3& point) const;
+
 private:
     TPolyLine3D footprint;  ///< Footprint of the electrode in 3D space
     TVector3 position;  ///< Position of the electrode in 3D space
     double voltage;  ///< Voltage of the electrode
-    std::function<bool(const TVector3&)> surfaceFunc;  ///< Function defining the electrode surface
+    std::function<bool(const TVector2&)> surfaceFunc;  ///< Function defining the electrode surface
     ElectricField weightingField;  ///< Weighting field associated with the electrode
 
     /**

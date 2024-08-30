@@ -5,8 +5,7 @@
 
 // Constructor
 Electrode::Electrode(const Surface& surface, const TVector3& position, double voltage)
-    : position(position), voltage(voltage), footprint(surface.getFootprint()) {
-    // Place the electrode at the given position
+    : position(position), voltage(voltage), footprint(surface.getFootprint()), surfaceFunc(surface.getSurfaceFunction()) {
     place(position);
 }
 
@@ -16,7 +15,7 @@ void Electrode::setVoltage(double voltage) {
 }
 
 // Set the surface function of the electrode
-void Electrode::setSurfaceFunction(std::function<bool(const TVector3&)> surfaceFunc) {
+void Electrode::setSurfaceFunction(std::function<bool(const TVector2&)> surfaceFunc) {
     this->surfaceFunc = surfaceFunc;
 }
 
@@ -31,7 +30,7 @@ double Electrode::getVoltage() const {
 }
 
 // Get the surface function of the electrode
-std::function<bool(const TVector3&)> Electrode::getSurfaceFunction() const {
+std::function<bool(const TVector2&)> Electrode::getSurfaceFunction() const {
     return surfaceFunc;
 }
 
@@ -64,3 +63,10 @@ void Electrode::drawFootprint(const char* option /* = "SAME" */) {
     footprint.Draw(option);
 }
 
+// Check if a 3D point is within the "shadow" of the electrode's surface, accounting for the electrode's position
+bool Electrode::isInShadow(const TVector3& point) const {
+    // Adjust the point by the electrode's position
+    TVector2 adjustedPoint(point.X() - position.X(), point.Y() - position.Y());
+    // Check if the adjusted point is inside the surface's boundary
+    return surfaceFunc(adjustedPoint);
+}

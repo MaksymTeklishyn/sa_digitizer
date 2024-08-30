@@ -63,7 +63,7 @@ public:
 private:
     const ElectricField* eField = nullptr;    ///< Pointer to the electric field (initialized to nullptr)
     const MagneticField* mField = nullptr;      ///< Pointer to the magnetic field (initialized to nullptr)
-    double diffusionCoeff = 100.0;               ///< Default diffusion coefficient
+    double diffusionCoeff = 400.0;               ///< Default diffusion coefficient
     TRandom3 randomGenerator;                   ///< Random generator for diffusion
     std::vector<TVector3> particlePath;  	///< Vector to store the particle's path
 
