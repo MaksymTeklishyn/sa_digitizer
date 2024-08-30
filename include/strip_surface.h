@@ -2,6 +2,8 @@
 #define STRIP_SURFACE_H
 
 #include "surface.h"
+#include <vector>
+#include <TVector2.h>
 
 /**
  * @class StripSurface
@@ -14,19 +16,20 @@ class StripSurface : public Surface {
 public:
     /**
      * @brief Constructs a StripSurface object with the specified width and angle.
-     *
-     * This constructor initializes the StripSurface with the given width and angle.
-     * The surface is centered around the origin (0, 0) in the XY plane.
-     *
-     * @param width The width of the StripSurface, defining the size across the central axis.
-     * @param angle The orientation of the StripSurface, in degrees, counterclockwise from the X-axis.
-     *              Defaults to 0 degrees if not specified.
+     * @param width The width of the StripSurface.
+     * @param angle The orientation angle of the StripSurface in degrees.
      */
     StripSurface(double width, double angle = 0);
 
 private:
-    double width;  ///< The width of the StripSurface, defining the size across the central axis.
-    double angle;  ///< The orientation of the StripSurface, in degrees counterclockwise from the X-axis.
+    double width;  ///< The width of the StripSurface
+    double angle;  ///< The orientation of the StripSurface in degrees
+
+    /**
+     * @brief Generates the vertices of a very long rectangle (strip) with the specified width and angle.
+     * @return A vector of TVector2 representing the vertices of the rotated strip.
+     */
+    std::vector<TVector2> buildStripVertices(double stripWidth, double stripAngle) const;
 };
 
 #endif // STRIP_SURFACE_H

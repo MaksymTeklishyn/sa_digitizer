@@ -49,65 +49,33 @@ int main(int argc, char **argv) {
     pathGraph->SetLineColor(kOrange);
     pathGraph->SetLineWidth(2);
 
-    // Create the TGeoManager to handle the geometry
-    TGeoManager* geoManager = new TGeoManager("Detector", "Detector Geometry");
-
-    // Create a 58x200x300 um^3 box representing the detector volume
-    TGeoMaterial* matSi = new TGeoMaterial("Silicon", 28.0855, 14, 2.33);
-    TGeoMedium* medSi = new TGeoMedium("MediumSi", 1, matSi);
-    TGeoVolume* detectorVolume = geoManager->MakeBox("DetectorVolume", medSi, 58.0 / 2, 200.0 / 2, 320.0 / 2);
-    detectorVolume->SetLineColor(kBlue);
-    detectorVolume->SetLineWidth(1);
-    detectorVolume->SetLineStyle(kDashed);
-
-    // Create a translation matrix to shift the detector by 320/2 µm upstream in the z direction
-    TGeoTranslation* translation = new TGeoTranslation(0, 0, 320.0 / 2);  // Shift by 320/2 µm in the z direction
-
-    // Create a top-level volume larger than the detector volumes
-    TGeoVolume* topVolume = geoManager->MakeBox("TopVolume", medSi, 900.0 / 2, 900.0 / 2, 900.0 / 2);
-    geoManager->SetTopVolume(topVolume);
-
-    // Place the detector volume with the translation applied
-    topVolume->AddNode(detectorVolume, 1, translation);
-
-    // Define a rectangular surface in the XY plane
-    std::vector<TVector2> vertices = {
-        TVector2(0, 0),
-        TVector2(100, 0),
-        TVector2(100, 50),
-        TVector2(0, 50)
-    };
-
 
     // Create an Electrode object with the Surface and a Z position of 100 micrometers
-//  Electrode electrode(Surface(vertices), 100.0);
-    Electrode electrode(PixelSurface(50., 150.), TVector3(0,0,300.));
-    Electrode electrodeStrip(StripSurface(30., 20.));
+    Electrode electrode(PixelSurface(50., 150.), TVector3(100, 0, 100.));
+    Electrode electrodeStrip(StripSurface(58., 15.));
     
 
 
     // Create a canvas to plot everything together
-    TCanvas* c1 = new TCanvas("c1", "Combined Plot", 800, 600);
+    TCanvas* c1 = new TCanvas("c1", "Combined Plot", 1200, 800);
 
 
     // Define the viewing range
-    Double_t rmin[3] = {-150, -150, 0};
-    Double_t rmax[3] = {150, 150, 320};
+    Double_t rmin[3] = {-300, -300, 0};
+    Double_t rmax[3] = {300, 300, 320};
 
     // Set up the 3D view with OpenGL
     TView3D *view = new TView3D(1, rmin, rmax);
 
 
     // Create a dummy 3D histogram to draw axes with a smaller range
-    TH3D* h3 = new TH3D("h3", ";X [#mum];Y [#mum];Z [#mum]", 
-                        10, -150, 150, 10, -150, 150, 10, 0, 320);
+    TH3D* h3 = new TH3D("h3", ";X [#mum];Y [#mum];Z [#mum]",
+                        1, rmin[0], rmax[0],   // X-axis range
+                        1, rmin[1], rmax[1],   // Y-axis range
+                        1, rmin[2], rmax[2]);  // Z-axis range
     h3->SetLineColor(0);  // Make the histogram itself invisible
     h3->SetStats(0);      // Hide the statistics box
     h3->Draw();           // Draw only the axes
-
-    // Draw the detector volume
-    geoManager->CloseGeometry();
-//  topVolume->Draw("SAME");  // Draw with OpenGL for interactive 3D visualization
 
     // Draw the particle path on the same canvas
     pathGraph->Draw("LINE SAME");
@@ -130,7 +98,6 @@ int main(int argc, char **argv) {
     // Clean up dynamically allocated memory
     delete pathGraph;
     delete c1;
-    delete translation;
     delete h3;
 
     return 0;
