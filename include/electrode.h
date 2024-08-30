@@ -14,7 +14,13 @@
  */
 class Electrode {
 public:
-    Electrode(const Surface& surface, double voltage = 0.0);
+    /**
+     * @brief Constructs an Electrode with the given surface, position, and voltage.
+     * @param surface A reference to a Surface object defining the electrode's geometry.
+     * @param position The position of the electrode in 3D space (default is (0,0,0)).
+     * @param voltage The voltage of the electrode (default is 0.0V).
+     */
+    Electrode(const Surface& surface, const TVector3& position = TVector3(0, 0, 0), double voltage = 0.0);
 
     /**
      * @brief Sets the voltage of the electrode.
@@ -53,16 +59,28 @@ public:
     const ElectricField& getWeightingField() const;
 
     /**
+     * @brief Moves the electrode's footprint to a new position in 3D space.
+     * @param newPosition The new position for the electrode.
+     */
+    void place(const TVector3& newPosition);
+
+    /**
      * @brief Visualizes the electrode's surface.
-     * @param title The title of the visualization.
+     * @param option The drawing option for ROOT (default is "SAME").
      */
     void drawFootprint(const char* option = "SAME");
 
 private:
-    TPolyLine3D footprint;  // Footprint of the electrode in 3D space
+    TPolyLine3D footprint;  ///< Footprint of the electrode in 3D space
+    TVector3 position;  ///< Position of the electrode in 3D space
     double voltage;  ///< Voltage of the electrode
     std::function<bool(const TVector3&)> surfaceFunc;  ///< Function defining the electrode surface
     ElectricField weightingField;  ///< Weighting field associated with the electrode
+
+    /**
+     * @brief Updates the footprint to the current position.
+     */
+    void updateFootprint();
 };
 
 #endif // ELECTRODE_H

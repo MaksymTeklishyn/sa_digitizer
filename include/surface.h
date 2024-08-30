@@ -47,6 +47,7 @@ public:
 
 private:
     std::vector<TVector2> vertices;  ///< Vertices defining the surface in the XY plane.
+    TPolyLine3D footprint;
 };
 
 #endif // SURFACE_H

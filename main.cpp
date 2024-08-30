@@ -81,8 +81,8 @@ int main(int argc, char **argv) {
 
     // Create an Electrode object with the Surface and a Z position of 100 micrometers
 //  Electrode electrode(Surface(vertices), 100.0);
-    Electrode electrode(PixelSurface(50., 150.), 100.0);
-    Electrode electrodeStrip(StripSurface(30., 20.), 100.0);
+    Electrode electrode(PixelSurface(50., 150.), TVector3(0,0,300.));
+    Electrode electrodeStrip(StripSurface(30., 20.));
     
 
 
